@@ -1,18 +1,24 @@
 package com.axmor;
 
-import spark.Request;
-import spark.Response;
-
-import static spark.Spark.get;
+import com.axmor.config.WebConfig;
+import com.axmor.service.IssueService;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import static spark.Spark.port;
 
 /**
  * Application entry point
  */
+@Configuration
+@ComponentScan({ "com.axmor" })
 public class Main {
+
     public static void main(String[] args) {
         port(80);
-        get("/", (Request req, Response res) ->
-                "<html><body><h1>Hello, world!</h1></body></html>");
+        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(Main.class);
+        new WebConfig(ctx.getBean(IssueService.class));
+        ctx.registerShutdownHook();
+        }
     }
-}
+
