@@ -13,7 +13,7 @@ create table issue (
   author TEXT ,
   description TEXT,
   publicationDate timestamp,
-  status enum('Created', 'Resolved', 'Closed')
+  status integer not null
 );
 
 drop table comment if exists;
