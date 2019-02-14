@@ -49,7 +49,6 @@
          </li>
         </#list>
 
-    <#if user??>
     <form class="form-horizontal" action="/comment/${issue.id}" role="form" method="post">
         <h5>Add Comment</h5>
         <div class="form-group">
@@ -95,5 +94,4 @@
             </div>
         </div>
     </form>
-    </#if>
 </@layout.masterTemplate>
